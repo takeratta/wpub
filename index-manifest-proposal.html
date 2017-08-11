@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+	<head>
+		<meta charset="utf-8" />
+		<title>Web Publications</title>
+		<script src="https://www.w3.org/Tools/respec/respec-w3c-common" class="remove" async></script>
+		<script src="common/js/biblio.js" class="remove"></script>
+		<link href="common/css/common.css" rel="stylesheet" type="text/css" />
+		<script class="remove">
+          var respecConfig = {
+              wg: "Publishing Working Group",
+              specStatus: "ED",
+              shortName: "wpub",
+            //   edDraftURI: "https://w3c.github.io/wpub/",
+              editors: [
+                  {
+      			      name: "Matt Garrish",
+                      url: 'http://www.daisy.org',
+                      company: "DAISY Consortium",
+                      companyURI: "http://www.daisy.org",
+                      w3cid: 51655
+                  }
+              ],
+              processVersion: 2017,
+              includePermalinks: true,
+              permalinkEdge:     true,
+              permalinkHide:     false,
+              diffTool:          "http://www.aptest.com/standards/htmldiff/htmldiff.pl",
+              wgURI:             "https://www.w3.org/publishing/groups/publ-wg/",
+              wgPublicList:      "public-publ-wg",
+              wgPatentURI:       "https://www.w3.org/2004/01/pp-impl/100074/status",
+			  github:			 {
+				  repoURL: "https://github.com/w3c/wpub",
+				  branch: "master"
+
+			  },
+            //   otherLinks: [
+            //       {
+            //         key: "Repository",
+            //         data: [{
+            //             value: "Github Repository",
+            //             href: "https://github.com/w3c/wpub"
+            //         }]
+            //       },
+            //       {
+            //         key: "Changes",
+            //         data: [
+            //         // {
+            //         //   value: "Diff to previous version",
+            //         //   href: "diff.html"
+            //         // },
+            //         {
+            //           value: "Commit history",
+            //           href: "https://github.com/w3c/wpub/commits/master"
+            //         }]
+            //       }
+            //   ],
+              localBiblio: biblio
+          };
+      </script>
+	</head>
+	<body>
+		<section id="abstract">
+			<p>This specification defines digital publishing based on a fully native representation of publications within
+				the Open Web Platform.</p>
+		</section>
+		<section id="sotd">
+			<p>This first public working draft provides a preliminary outline of a Web Publication. Many details are under
+				active consideration within the Publishing Working Group and are subject to change. The most prominent known
+				issues have been identified in this document and links provided to comment on them.</p>
+
+			<p>In particular, the Working Group seeks feedback on the following issues:</p>
+			<ul>
+				<li>...</li>
+			</ul>
+		</section>
+		<section  id="intro" class="informative">
+			<h2>Introduction</h2>
+			<section id="terminology">
+				<h3>Terminology</h3>
+
+				<dl>
+					<dt><dfn>Default Reading Order</dfn></dt>
+					<dd><p>The default reading order is a specific progression through the <a>primary resources</a> defined in
+						the <a>manifest</a> by the creator of a <a>Web Publication</a>.</p>
+						<p>A user might follow alternative pathways through the content, but in the absence of such interaction
+							the default reading order defines the expected progression from one primary resource to the
+							next.</p></dd>
+
+					<dt><dfn>IRI</dfn></dt>
+					<dd><p>An IRI, or Internationalized Resource Identifier, is an extension to the URI specification to allow
+						characters from Unicode. There is a mapping algorithm for translating between IRIs and the equivalent
+						encoded URI form. IRIs are defined by [[!rfc3987]].</p></dd>
+
+					<dt><dfn>Locator</dfn></dt>
+					<dd><p>A locator is a dereferenceable IRI that can be used to locate and retrieve a Web Publication or a part
+						of a Web Publication.</p></dd>
+
+					<dt><dfn data-lt="Manifests">Manifest</dfn></dt>
+					<dd><p>A manifest represents structured information about a <a>Web Publication</a>, such as informative
+						metadata, a list of all <a data-lt="primary resource">primary</a> and <a>secondary resources</a>, and
+						the <a>default reading order</a>.</p></dd>
+
+					<dt><dfn data-lt="Primary Resources">Primary Resource</dfn></dt>
+					<dd><p>A primary resource is one that is listed in the <a>default reading order</a> of a <a>Web
+						Publication</a>.</p></dd>
+
+					<dt><dfn data-lt="Secondary Resources">Secondary Resource</dfn></dt>
+					<dd><p>A secondary resource is one that is required for the processing or rendering of a <a>primary
+						resource</a>.</p></dd>
+
+					<dt><dfn data-lt="Web Publications">Web Publication</dfn></dt>
+					<dd><p>A Web Publication is a collection of one or more <a>primary resources</a>, organized together through
+						a <a>manifest</a> into a single logical work with a <a>default reading order</a>. The Web Publication
+						is uniquely identifiable and presentable using Open Web Platform technologies.</p></dd>
+
+					<dt><dfn>Web Publication Canonical Identifier</dfn></dt>
+					<dd><p>A Web Publication canonical identifier is a singular and unique identifier for a Web Publication
+						provided at time of publication. It is persistent and immutable across all instantiations of the
+						Web Publication. It SHOULD be an IRI (and therefore also a locator). If not an IRI, it MUST be
+						possible to make a 1-to-1 mapping of the canonical identifier to a locator. A cononical identifier
+						that is an IRI, or a locator mapped from a canonical identifier, can be referred to as an Identifying
+						IRI. While the canonical identifier itself is persistent, its mapping to an IRI MAY be dynamic. </p></dd>
+
+				</dl>
+			</section>
+
+		</section>
+		<section id="manifest">
+			<h2>Manifest</h2>
+			<section>
+				<h2>Abstract versus Concrete Manifest</h2>
+
+				<p>We are working define an abstract manifest, or <dfn data-lt="abstract manifest">WP Information Set</dfn> to identify what type of information (<dfn data-lt="WP Information Item">WP Information Items</dfn>) is required at the Web Publication level (as opposed to individual resource level) for a UA to process the publication properly. Here we will outline MUST/SHOULD without specific information of <em>how</em>.</p>
+
+				<p>The concrete manifest will be the <em>how</em>. It is a file format(s) specification that will define part of the information set. Some of the information may come from other resources, such as external files.</p>
+			</section>
+
+			<section>
+				<h2>The abstract manifest, a.k.a. <a>WP Information Set</a></h2>
+
+				<p>An <em>abstract</em> manifest should contain the following <a>WP Information items</a>.</p>
+
+				<ol>
+					<li>MUST assert WP-ness</li>
+					<li>MUST list the <a>Primary Resources</a> of the WP.</li>
+					<li>SHOULD list <a>Secondary Resources</a>, but that list is not necessarily exhaustive</li>
+					<li>MUST have a locator</li>
+					<li>SHOULD have a title (or “name”)</li>
+					<li>SHOULD indicate the defaulting (natural) language</li>
+					<li>MUST indicate the default reading order</li>
+				</ol>
+
+				<p class="note">These requirements reflect the current minimum consensus, though a number of issues remain open. The issues may usually lead to a “MUST” instead of a “SHOULD” in the list above.</p>
+
+				<p class="issue" data-number="15">Ignoring issues such as location, serialization, etc. What is the minimum viable manifest?</p>
+
+				<div class="issue" data-number="20">
+					<p></p>(See also <a href="https://github.com/w3c/wpub/issues/24">issue #24</a>.) The question is whether the WP MUST include a title or not.</p>
+
+					<p>Note that this is the question for the <a>abstract manifest</a>. How that information is acquired may also depend on the <a href="#fallback">fallback mechanism</a>. </p>
+				</div>
+
+				<p class="issue" data-number="21">
+					Whether the minimum manifest must include any metadata, or a specific slot to handle metadata
+				</p>
+
+				<p class="issue" data-number="22">The discussion led to the question whether the manifest MUST list all <a>Secondary resources</a> or not. In this sense, this became a duplicate of <a href="https://github.com/w3c/wpub/issues/23">issue #23</a> ended up at the same question. </p>
+
+				<p class="issue" data-number="23">The question is whether the manifest MUST list all <a>Secondary resources</a> or not.  </p>
+
+				<section id="fallback">
+					<h3>Fallback mechanisms</h3>
+
+					<p>In some cases, <a>WP Information Items</a>, even if required for an <a>abstract manifest</a>, are not necessarily expressed in a <a>concrete manifests</a>. For some of these cases “fallback mechanisms” are defined, i.e., simple algorithms whereby a <a>User Agent</a> can reconstruct the necessary information item. These are:</p>
+
+					<dl class="">
+						<dt>title</dt>
+						<dd>If the title is not specified in the concrete manifest, a user agent MUST:
+							<ul>
+								<li>
+									If a WP contains a single primary resource with a title element appropriate for its type (eg. SVG, HTML titles), and that becomes the WP's title.
+								</li>
+								<li>
+									If a WP contains several primary resources with a title element appropriate for its type, the user agent uses the title of the first resource in the default reading order.
+								</li>
+								<li>
+									Otherwise, the UA uses its own heuristics. Note that a URL or a filename is not considered to be a valid title.
+								</li>
+							</ul>
+						</dd>
+						<dt>(natural) language</dt>
+						<dd>If the language is not specified in the concrete manifest, a user agent MUST:
+							<ul>
+								<li>
+									If a WP contains a single primary resource with a language element appropriate for its type (eg. SVG, HTML titles), and that becomes the WP's language.
+								</li>
+								<li>
+									If a WP contains several primary resources with a language element appropriate for its type, the user agent uses the language of the first resource in the default reading order.
+								</li>
+								<li>
+									Otherwise, the language is English.
+								</li>
+							</ul>
+						</dd>
+					</dl>
+				</section>
+			</section>
+			<section>
+				<h2>The Concrete Manifest</h2>
+
+				<p>A <dfn data-lt="concrete manifests">Concrete Manifest</dfn> is a file format (or several file formats); these may be used to define part of the <a>WP Information items</a>.</p>
+
+				<p class="issue" data-number="7">Format of the Manifest (JSON, XML, embedded into HTML, etc.).</p>
+				<p class="issue" data-number="13">If we have a collection of information about a web publication as a whole ("manifest") that exists separately from most of the publication's resources, we need to find a way to associate the manifest with the other publication resources.</p>
+				<p class="issue" data-number="25"></p>
+				<p class="issue" data-number="26">Should the TOC be a separate HTML file or is the listing of primary resources in the manifest an implicit TOC?</p>
+
+				<p class="note">The following issues are not yet explicitly recorded on the issue list on GitHub.</p>
+
+				<p class="issue">In case the concrete manifest is expressed in JSON, should it be defined “on top” of the Web Application Manifest specification, or should it be a fully separate specification?</p>
+
+			</section>
+
+		</section>
+	</body>
+</html>
