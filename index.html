@@ -188,24 +188,30 @@
 			</section>
 
 			<section id="wp-to-app" class="informative">
-				<h3>Web Publication Consumption</h3>
+				<h3>User Agents and Apps</h3>
 
-				<p>A Web Publication is, at its core, a description of content, one that enables users to choose how they
-					prefer to read. How the content is consumed is intentionally left open to different models. This approach
-					is designed to improve the flexibility that users have in choosing their preferred user agent, and also
-					preferred assistive technology.</p>
+				<p>A Web Publication is, at its core, a description of content, one that enables different types of user
+					agents without requiring only one interface to the content.</p>
 
-				<p>The approach is also intended to simplify the creation of content by authors. Authors do not have to be a
-					developer, or pick only one interface by which their content can be consumed. They do not have to be
-					concerned about updating the interface, or worrying that it will not be supported in the future.</p>
+				<p>But a Web Publication is also constructed in a similar fashion to Web applications: using a manifest to
+					describe the content and the affordances that can be implemented. It can be thought of as an application
+					in waiting. As a result, no assumptions are made that the publication itself provide the affordances.
+					There are two significant reasons for this:</p>
 
-				<p>These ideals do not mean that a Web Publication cannot be modeled as an application. A publisher or author
-					might choose to bundle their own interface with the Web Publication, or to only expose Web Publications
-					through their own interface. In these cases, the user will not have the same flexibility, but these are
-					business decisions that are outside the scope of a specification to solve. What Web Publications seeks to
-					achieve, even in such scenarios, is a measure of choice. The author might choose not to have their
-					interface initiate automatically, for example, allowing the user to select a different user agent to
-					consume the content.</p>
+				<ol>
+					<li>It cleanly separates the Web Publication from the interface used to read it. Authors do not have to
+						be developers, and in most cases are not. They do not have to pick only one interface by which their
+						content can be consumed. They do not have to be concerned about updating the interface, or worrying
+						that it will not be supported in the future.</li>
+					<li>It improves the flexibility that users have in choosing their preferred user agent and/or assistive
+						technology to consume the content.</li>
+				</ol>
+
+				<p>These ideals do not mean that a Web Publication cannot be modeled as an application. The author might
+					choose to bundle their own interface with the Web Publication, or to only expose Web Publications through
+					their own interface. What Web Publications seeks to achieve, even in such scenarios, is a measure of
+					choice. The author might choose not to have their interface initiate automatically, for example, allowing
+					the user to select a different user agent to consume the content.</p>
 			</section>
 
 			<section id="scope" class="informative">
